@@ -1,4 +1,4 @@
-import Video from "./video.vue";
+import Video from "./src/video.vue";
 
 Video.install = Vue => {
     Vue.component(Video.name, Video);

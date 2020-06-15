@@ -2,7 +2,7 @@
     "useTabs": false,
     "tabWidth": 4,
     "arrowParens": "avoid",
-    "printWidth": 280,
+    "printWidth": 140,
     "semi": true,
     "singleQuote": false,
     "bracketSpacing": true,

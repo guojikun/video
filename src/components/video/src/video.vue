@@ -2,9 +2,8 @@
 export default {
     name: "OwlVideo",
     props: {
-        source: {
-            type: [Array, String],
-            required: true,
+        src: {
+            type: String,
         },
         readonly: {
             type: Boolean,
@@ -12,7 +11,13 @@ export default {
         },
     },
     render(h) {
-        return h("div", { class: ["owl-video"] }, [h("video", { class: ["owl-video-player"], attrs: { controls: "controls" } }, [...this.$slots.default, "您的浏览器不支持Video标签。"]), h("div", { class: ["owl-video-controls"] })]);
+        return h("div", { class: ["owl-video"] }, [
+            h("video", { class: ["owl-video-player"], attrs: { controls: "controls", src: this.src } }, [
+                ...this.$slots.default,
+                "您的浏览器不支持Video标签。",
+            ]),
+            h("div", { class: ["owl-video-controls"] }),
+        ]);
     },
     mounted() {
         const soruce = this.getSource();
