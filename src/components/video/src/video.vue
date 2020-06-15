@@ -12,44 +12,17 @@ export default {
     },
     render(h) {
         return h("div", { class: ["owl-video"] }, [
-            h("video", { class: ["owl-video-player"], attrs: { controls: "controls", src: this.src } }, [
-                ...this.$slots.default,
-                "您的浏览器不支持Video标签。",
-            ]),
+            h("video", { class: ["owl-video-player"], attrs: { controls: "controls", src: this.src } }, this.slots),
             h("div", { class: ["owl-video-controls"] }),
         ]);
     },
-    mounted() {
-        const soruce = this.getSource();
-        console.log(soruce);
-    },
+    mounted() {},
     methods: {
-        getSource() {
-            const type = typeof this.source;
-            if (type === "string") {
-                return [
-                    {
-                        src: this.source,
-                        type: `video/${this.source.slice(this.source.lastIndexOf("."), this.source.length)}`,
-                    },
-                ];
+        slots() {
+            if (this.$slots.default) {
+                return [...this.$slots.default, "您的浏览器不支持Video标签。"];
             } else {
-                return this.source;
-            }
-        },
-    },
-    computed: {
-        srcs() {
-            const type = typeof this.source;
-            if (type === "string") {
-                return [
-                    {
-                        src: this.source,
-                        type: `video/${this.source.slice(this.source.lastIndexOf("."), this.source.length)}`,
-                    },
-                ];
-            } else {
-                return this.source;
+                return ["您的浏览器不支持Video标签。"];
             }
         },
     },
